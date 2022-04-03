@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 class CategoryController extends Controller
 {
     public function AllCat(){
-        return view('admin.category.index');
+        $categories = Categorey::all();
+        return view('admin.category.index',compact('categories'));
     }
 
     public function AddCat (Request $request) {

@@ -24,20 +24,23 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">SL</th>
+                                        <th scope="col">Category Name</th>
+                                        <th scope="col">User_id</th>
                                         <th scope="col">Created_at</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @php($i = 1)
+                                     @foreach($categories as $category)
                                     <tr>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <th scope="row">{{ $i++ }}</th>
+                                        <td>{{$category->category_name}}</td>
+                                        <td>{{$category->user_id}}</td>
+                                        <td>{{$category->created_at->diffForHumans()}}</td>
 
                                     </tr>
+                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
