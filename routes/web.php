@@ -29,6 +29,7 @@ Route::get('/contac', function () {
     //Category Controller
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
+Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
 
 Route::middleware([
     'auth:sanctum',

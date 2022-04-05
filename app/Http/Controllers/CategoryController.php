@@ -45,4 +45,12 @@ class CategoryController extends Controller
 //        $category->user_id = Auth::user()->id;
 //        $category-> save();
     }
+
+    public function Edit($id){
+        $categories = Categorey::find($id);
+        return view('admin.category.edit',compact('categories'));
+    }
+
+
+
 }
