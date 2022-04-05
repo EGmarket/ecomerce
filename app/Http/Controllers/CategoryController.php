@@ -6,12 +6,16 @@ use App\Models\Categorey;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
     public function AllCat(){
-        $categories = Categorey::all();
+        // Using Eloquent ORM
+        $categories = Categorey::latest()->paginate(5);
+        //using Query Builder
+//        $categories = DB::table('categoreys')->latest()->paginate(5);
         return view('admin.category.index',compact('categories'));
     }
 
