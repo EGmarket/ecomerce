@@ -14,9 +14,10 @@ class CategoryController extends Controller
     public function AllCat(){
         // Using Eloquent ORM
         $categories = Categorey::latest()->paginate(5);
+        $trashCat = Categorey::onlyTrashed()->latest()->paginate(3);
         //using Query Builder
 //        $categories = DB::table('categoreys')->latest()->paginate(5);
-        return view('admin.category.index',compact('categories'));
+        return view('admin.category.index',compact('categories','trashCat'));
     }
 
     public function AddCat (Request $request) {
@@ -59,6 +60,10 @@ class CategoryController extends Controller
         return Redirect()->route('all.category')->with('success','Category successfully updated');
     }
 
+    public function SoftDelete($id){
+        $delete = Categorey::find($id)->delete();
+        return Redirect()->back()->with('success','Category Soft Delete Successfully');
+    }
 
 
 }

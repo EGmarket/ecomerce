@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Categorey extends Model
 {
     use SoftDeletes;
+
+
     protected $fillable = [
         'user_id',
         'category_name',

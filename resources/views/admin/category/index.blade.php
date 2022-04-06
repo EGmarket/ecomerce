@@ -42,7 +42,7 @@
                                         <td>{{\Carbon\Carbon::parse($category->created_at)->diffForHumans()}}</td>
                                         <td>
                                             <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <a href="{{ url('softdelete/category/'.$category->id) }}" class="btn btn-danger">Delete</a>
                                         </td>
 
                                     </tr>
@@ -73,6 +73,52 @@
                                 </div>
 
                             </div>
+
+                        </div>
+                    </div>
+                </div>
+{{--                Trash Part started from Here --}}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+
+                                <div class="card-header"> Trash List</div>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">SL</th>
+                                        <th scope="col">Category Name</th>
+                                        <th scope="col">User_id</th>
+                                        <th scope="col">Created_at</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{--                                    @php($i = 1)--}}
+                                    @foreach($trashCat as $category)
+                                        <tr>
+                                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                                            <td>{{$category->category_name}}</td>
+                                            <td>{{$category->user->name}}</td>
+                                            {{--                                        <td>{{$category->created_at->diffForHumans()}}</td>--}}
+                                            <td>{{\Carbon\Carbon::parse($category->created_at)->diffForHumans()}}</td>
+                                            <td>
+                                                <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-info">Edit</a>
+                                                <a href="" class="btn btn-danger">Delete</a>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $trashCat->links() }}
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
 
                         </div>
                     </div>
