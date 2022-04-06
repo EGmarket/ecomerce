@@ -105,7 +105,7 @@
                                             <td>{{\Carbon\Carbon::parse($category->created_at)->diffForHumans()}}</td>
                                             <td>
                                                 <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-success">Restore</a>
-                                                <a href="" class="btn btn-danger">Delete Forever</a>
+                                                <a href="{{ url('pdelete/category/'.$category->id) }}" class="btn btn-danger">Delete Forever</a>
                                             </td>
 
                                         </tr>
