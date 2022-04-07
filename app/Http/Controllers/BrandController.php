@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
@@ -26,12 +27,20 @@ class BrandController extends Controller
             ]
         );
         $brand_img = $request->file('brand_img');
-        $name_gen = hexdec(uniqid());
-        $img_ext = strtolower($brand_img->getClientOriginalExtension());
-        $img_name = $name_gen.'.'.$img_ext;
-        $up_location = 'images/brand/';
-        $last_img = $up_location.$img_name;
-        $brand_img->move($up_location,$img_name);
+
+
+
+//        $name_gen = hexdec(uniqid());
+//        $img_ext = strtolower($brand_img->getClientOriginalExtension());
+//        $img_name = $name_gen.'.'.$img_ext;
+//        $up_location = 'images/brand/';
+//        $last_img = $up_location.$img_name;
+//        $brand_img->move($up_location,$img_name);
+
+        $name_gen = hexdec(uniqid()).'.'.$brand_img->getClientOriginalExtension();
+        Image::make($brand_img)->resize(300,200)->save('images/brand/'.$name_gen);
+
+        $last_img = 'images/brand/'.$name_gen;
 
         Brand::insert([
             'brand_name' => $request->brand_name,
