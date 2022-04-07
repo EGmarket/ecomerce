@@ -37,7 +37,7 @@
                                         <tr>
                                             <th scope="row">{{ $brands->firstItem()+$loop->index }}</th>
                                             <td>{{$brand->brand_name}}</td>
-                                            <td><img src="" alt=""></td>
+                                            <td><img src="{{asset($brand->brand_img)}}" style="height:50px; width: 120px; "  alt=""></td>
 {{--                                            <td>{{$brand->user->name}}</td>--}}
                                             {{--                                        <td>{{$category->created_at->diffForHumans()}}</td>--}}
                                             <td>
@@ -67,6 +67,7 @@
                                 <div class="card-body">
                                     <form action="{{route('store.brand')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
+
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Brand Name</label>
                                             <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
