@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Categorey;
+use App\Models\Multipic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -110,5 +111,33 @@ class BrandController extends Controller
         unlink($old_image);
         Brand::find($id)->delete();
         return Redirect()->back()->with('success','Brand Deleted successfully');
+    }
+
+    // Multi pic uploaded method
+
+    public function MultiPic(){
+        $images = Multipic::all();
+        return view('admin.multipic.index',compact('images'));
+    }
+
+    public function StoreImg(Request $request){
+        $image = $request->file('image');
+
+        foreach($image as $multi_img){
+            $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+            Image::make($multi_img)->resize(300,200)->save('images/multi/'.$name_gen);
+
+            $last_img = 'images/multi/'.$name_gen;
+
+            Multipic::insert([
+                'image' => $last_img,
+                'created_at' => Carbon::now()
+            ]);
+        }
+        //end foreach Loop
+
+
+
+        return Redirect()->back()->with('success','Brand added successfully');
     }
 }
