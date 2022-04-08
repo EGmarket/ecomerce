@@ -60,7 +60,7 @@ Route::middleware([
         //using Eloquent ORM getting Data
         $users = User::all();
         //Using Query Builder getting data
-        $userQuery = DB::table('users')->get();
-        return view('dashboard',compact('userQuery'));
+//        $userQuery = DB::table('users')->get();
+        return view('admin.index');
     })->name('dashboard');
 });
