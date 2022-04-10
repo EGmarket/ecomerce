@@ -22,7 +22,7 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
-    return view('layouts.master_home');
+    return view('home');
 });
 Route::get('/about', function () {
     return view('about');
