@@ -1,11 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{--            {{ __('Dashboard') }}--}}
-            <h2> <b>All Category </b> </h2>
-
-        </h2>
-    </x-slot>
+@extends('admin.admin_master')
+@section('admin')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto ">
@@ -48,8 +42,9 @@
                                     </tr>
                                          @endforeach
                                     </tbody>
+
                                 </table>
-                                {{ $categories->links() }}
+                                    {{ $categories->links() }}
                             </div>
 
                         </div>
@@ -127,4 +122,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
